@@ -1,5 +1,5 @@
 import React from 'react';
-import FontAwesome from 'react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'rebass';
 import { Tooltip } from 'react-tippy';
 import styled from 'styled-components';
@@ -14,10 +14,16 @@ const IconLink = styled(Link)`
   }
 `;
 
+const Icon = fontAwesomeIcon => {
+  return fontAwesomeIcon.split('-')[0] === 'fab'
+    ? ['fab', fontAwesomeIcon.split('-')[1]]
+    : fontAwesomeIcon;
+};
+
 const SocialLink = ({ fontAwesomeIcon, name, url }) => (
   <Tooltip title={name} position="bottom" trigger="mouseenter">
     <IconLink href={url} target="_blank">
-      <FontAwesome name={fontAwesomeIcon} />
+      <FontAwesomeIcon icon={Icon(fontAwesomeIcon)} />
     </IconLink>
   </Tooltip>
 );
