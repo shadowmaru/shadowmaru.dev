@@ -35,7 +35,7 @@ const Triangle = styled.div`
       return props.invertX
         ? `border-left-width: ${width};`
         : `border-right-width: ${width};`;
-    }};
+    }}
   }
 `;
 

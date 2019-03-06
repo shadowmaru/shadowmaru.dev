@@ -55,12 +55,14 @@ const BlogPost = ({ title, description, publishDate, heroImage }) => (
     <EllipsisHeading m={3} p={1}>
       {title}
     </EllipsisHeading>
-    {heroImage && <CoverImage height="200px" alt={title} fluid={heroImage.fluid} />}
+    {heroImage && (
+      <CoverImage height="200px" alt={title} fluid={heroImage.fluid} />
+    )}
     <Text m={3}>
       <p
         dangerouslySetInnerHTML={{
-        __html: description.childMarkdownRemark.html,
-      }}
+          __html: description.childMarkdownRemark.html,
+        }}
       />
     </Text>
     <ImageSubtitle bg="primaryLight" color="white" x="right" y="bottom" round>
@@ -68,6 +70,19 @@ const BlogPost = ({ title, description, publishDate, heroImage }) => (
     </ImageSubtitle>
   </Card>
 );
+
+BlogPost.propTypes = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.shape({
+    childMarkdownRemark: PropTypes.shape({
+      html: PropTypes.string,
+    }),
+  }).isRequired,
+  publishDate: PropTypes.string.isRequired,
+  heroImage: PropTypes.shape({
+    fluid: PropTypes.shape({}),
+  }).isRequired,
+};
 
 const edgeToArray = data => data.edges.map(edge => edge.node);
 

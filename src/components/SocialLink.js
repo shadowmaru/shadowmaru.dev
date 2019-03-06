@@ -25,7 +25,7 @@ const SocialLink = ({ fontAwesomeIcon, name, url }) => (
 SocialLink.propTypes = {
   fontAwesomeIcon: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired,
+  url: PropTypes.string,
 };
 
 export default SocialLink;
