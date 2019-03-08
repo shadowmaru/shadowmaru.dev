@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Heading, Text } from 'rebass';
-import { StaticQuery, graphql } from 'gatsby';
+import { StaticQuery, graphql, Link } from 'gatsby';
 import Img from 'gatsby-image';
 import styled from 'styled-components';
 import Fade from 'react-reveal/Fade';
@@ -50,7 +50,7 @@ const EllipsisHeading = styled(Heading)`
   border-bottom: ${props => props.theme.colors.primary} 5px solid;
 `;
 
-const BlogPost = ({ title, description, publishDate, heroImage }) => (
+const BlogPostPreview = ({ title, description, publishDate, heroImage }) => (
   <Card pb={4}>
     <EllipsisHeading m={3} p={1}>
       {title}
@@ -71,7 +71,7 @@ const BlogPost = ({ title, description, publishDate, heroImage }) => (
   </Card>
 );
 
-BlogPost.propTypes = {
+BlogPostPreview.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.shape({
     childMarkdownRemark: PropTypes.shape({
@@ -121,7 +121,9 @@ const Blog = () => (
           <CardContainer minWidth="300px">
             {blogPosts.map(p => (
               <Fade bottom>
-                <BlogPost key={p.id} {...p} />
+                <Link to={`blog/${p.slug}`}>
+                  <BlogPostPreview key={p.id} {...p} />
+                </Link>
               </Fade>
             ))}
           </CardContainer>
